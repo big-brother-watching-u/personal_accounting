@@ -1,0 +1,75 @@
+﻿<Page x:Class="personal_accounting.AddEmployeePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:personal_accounting"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d"
+      d:DesignHeight="1080" d:DesignWidth="1570"
+      Title="AddEmployeePage" Background="White">
+    <Grid x:Name="AddEmployee">
+        <Frame x:Name="EmployeeFrame" Background="#4657ff" NavigationUIVisibility="Hidden" Grid.Row="17" Grid.ColumnSpan="2" />
+        <TextBlock Text="Фамилия" FontSize="40" Background="#faf2fd"/>
+        <TextBlock Text="Имя" FontSize="40" Grid.Row="1"/>
+        <TextBlock Text="Отчество" FontSize="40" Grid.Row="2" Background="#faf2fd"/>
+        <TextBlock Text="Логин" FontSize="40" Grid.Row="3"/>
+        <TextBlock Text="Email" FontSize="40" Grid.Row="4" Background="#faf2fd"/>
+        <TextBlock Text="Пароль" FontSize="40" Grid.Row="5"/>
+        <TextBlock Text="Права" FontSize="40" Grid.Row="6" Background="#faf2fd"/>
+        <TextBlock Text="Дата рождения" FontSize="40" Grid.Row="7"/>
+        <TextBlock Text="Город проживания" FontSize="40" Grid.Row="8" Background="#faf2fd"/>
+        <TextBlock Text="Домашний адрес" FontSize="40" Grid.Row="9" />
+        <TextBlock Text="Семейный статус" FontSize="40" Grid.Row="10" Background="#faf2fd"/>
+        <TextBlock Text="Пол" FontSize="40" Grid.Row="11"/>
+        <TextBlock Text="Количество детей" FontSize="40" Grid.Row="12" Background="#faf2fd"/>
+        <TextBlock Text="Паспортные данные" FontSize="40" Grid.Row="13"/>
+        <TextBlock Text="Дата регистрации паспорта" FontSize="40" Grid.Row="14" Background="#faf2fd"/>
+        <TextBlock Text="Место регистрации паспорта" FontSize="40" Grid.Row="15" />
+        <TextBlock Text="Номер телефона" FontSize="40" Grid.Row="16" Background="#faf2fd"/>
+
+        <TextBox x:Name="surnameBox" Grid.Row="0" Grid.Column="1" FontSize="35" Background="#faf2fd" Text="{Binding surname}"/>
+        <TextBox x:Name="nameBox" Grid.Row="1" Grid.Column="1" FontSize="35" Text="{Binding name}"/>
+        <TextBox x:Name="patronymicBox" Grid.Row="2" Grid.Column="1" FontSize="35" Background="#faf2fd" Text="{Binding patronymic}"/>
+        <TextBox x:Name="loginBox" Grid.Row="3" Grid.Column="1" FontSize="35" Text="{Binding login}"/>
+        <TextBox x:Name="emailBox" Grid.Row="4" Grid.Column="1" FontSize="35" Background="#faf2fd" Text="{Binding email}"/>
+        <TextBox x:Name="passwordBox" Grid.Row="5" Grid.Column="1" FontSize="35" Text="{Binding password}"/>
+        <TextBox x:Name="rightsBox" Grid.Row="6" Grid.Column="1" FontSize="35" Background="#faf2fd" Text="{Binding rights}"/>
+        <DatePicker x:Name="date_of_birthBox" Grid.Row="7" Grid.Column="1" FontSize="35" SelectedDate="{Binding date_of_birth}" Height="55"/>
+        <TextBox x:Name="address_cityBox" Grid.Row="8" Grid.Column="1" FontSize="35" Background="#faf2fd" Text="{Binding address_city}"/>
+        <TextBox x:Name="home_addressBox" Grid.Row="9" Grid.Column="1" FontSize="35"  Text="{Binding home_address}"/>
+        <TextBox x:Name="marital_statusBox" Grid.Row="10" Grid.Column="1" FontSize="35" Background="#faf2fd" Text="{Binding marital_status}"/>
+        <TextBox x:Name="genderBox" Grid.Row="11" Grid.Column="1" FontSize="35"  Text="{Binding gender}"/>
+        <TextBox x:Name="amount_childrenBox" Grid.Row="12" Grid.Column="1" FontSize="35" Background="#faf2fd" Text="{Binding amount_children}"/>
+        <TextBox x:Name="data_passportBox" Grid.Row="13" Grid.Column="1" FontSize="35"  Text="{Binding data_passport}"/>
+        <DatePicker x:Name="date_reg_passportBox" Grid.Row="14" Grid.Column="1" FontSize="35" Background="#faf2fd" SelectedDate="{Binding date_reg_passport}" Height="50" />
+        <TextBox x:Name="organisation_passportBox" Grid.Row="15" Grid.Column="1" FontSize="35"  Text="{Binding organisation_passport}"/>
+        <TextBox x:Name="number_telephoneBox" Grid.Row="16" Grid.Column="1" FontSize="35" Background="#faf2fd" Text="{Binding number_of_telephone}"/>
+        <Button Content="Назад" Grid.Column="0" Grid.Row="17" Height="Auto" Name="ButtonBack" Click="ButtonBack_Click" Margin="110,47,125,48"/>
+        <Button Content="Сохранить" Grid.Column="1" Grid.Row="17" Height="Auto" Name="ButtonSave" Margin="600,47,60,48" Click="ButtonSave_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="57*"/>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="145"/>
+        </Grid.RowDefinitions>
+    </Grid>
+</Page>

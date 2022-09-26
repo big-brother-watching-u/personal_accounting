@@ -1,0 +1,33 @@
+﻿<Page x:Class="personal_accounting.UserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:personal_accounting"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d"
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="UserPage" Background="White">
+
+    <Grid Background="#f0d9ff">
+        <Border MinWidth="800" MinHeight="900" Margin="15" Background="White" VerticalAlignment="Center" Padding="30" MaxWidth="550" CornerRadius="20">
+            <StackPanel>
+                <TextBlock x:Name="LoginPageButton" Text="Регистрация пользователя" FontSize="30" FontWeight="Bold" Margin="0 0 0 20"/>
+                <Grid Margin="0 0 0 20">
+                    <Button x:Name="ButtonBackPage" HorizontalAlignment="Right" Content="Назад" Style="{StaticResource MaterialDesignFlatButton}" Click="ButtonBackPage_Click"/>
+                </Grid>
+                <TextBox x:Name="surnameBox" materialDesign:HintAssist.Hint="Введите вашу фамилию"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="nameBox" materialDesign:HintAssist.Hint="Введите ваше имя" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="patronymicBox" materialDesign:HintAssist.Hint="Введите ваше отчество" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <DatePicker x:Name="date_of_birthBox" materialDesign:HintAssist.Hint="Введите дату рождеиния" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                <TextBox x:Name="home_addressBox" materialDesign:HintAssist.Hint="Введите домашний адрес" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="marital_statusBox" materialDesign:HintAssist.Hint="Введите ваше семейное положение" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="genderBox" materialDesign:HintAssist.Hint="Введите ваш пол" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="amount_childrenBox" materialDesign:HintAssist.Hint="Введите ваше количество детей" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="data_passportBox" materialDesign:HintAssist.Hint="Введите ваши паспортные данные" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="number_of_telephoneBox" materialDesign:HintAssist.Hint="Введите ваш номер телефона" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <Button x:Name="ButtonReg" Content="Зарегистрироваться"  Margin="0 20" Click="ButtonReg_Click" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

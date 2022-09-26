@@ -1,0 +1,677 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище personal_accounting_DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Departaments">
+          <Key>
+            <PropertyRef Name="departament_id" />
+          </Key>
+          <Property Name="departament_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="departament_name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Documents">
+          <Key>
+            <PropertyRef Name="id_doc" />
+          </Key>
+          <Property Name="id_doc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_doc" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="rights" Type="nvarchar" MaxLength="50" />
+          <Property Name="date_of_birth" Type="date" />
+          <Property Name="address_city" Type="nvarchar" MaxLength="50" />
+          <Property Name="home_address" Type="nvarchar" MaxLength="50" />
+          <Property Name="marital_status" Type="nvarchar" MaxLength="50" />
+          <Property Name="gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="amount_children" Type="int" />
+          <Property Name="data_passport" Type="nvarchar" MaxLength="50" />
+          <Property Name="number_of_telephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="date_reg_passport" Type="date" />
+          <Property Name="organisation_passport" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Info_employees">
+          <Key>
+            <PropertyRef Name="id_info_employee" />
+          </Key>
+          <Property Name="id_info_employee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="position_id" Type="int" />
+          <Property Name="departament_id" Type="int" />
+          <Property Name="employee_id" Type="int" Nullable="false" />
+          <Property Name="reception_date" Type="date" />
+          <Property Name="dismissal_date" Type="date" />
+          <Property Name="start_activity" Type="date" />
+          <Property Name="disability" Type="bit" />
+          <Property Name="disability_date" Type="date" />
+          <Property Name="rate_work" Type="nvarchar" MaxLength="50" />
+          <Property Name="salary" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="position_id" />
+          </Key>
+          <Property Name="position_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="positions_name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="State_time">
+          <Key>
+            <PropertyRef Name="state_unit_id" />
+          </Key>
+          <Property Name="state_unit_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="position_id" Type="int" />
+          <Property Name="departament_id" Type="int" />
+          <Property Name="quantity_state_unit" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Vacancies">
+          <Key>
+            <PropertyRef Name="vacancies_id" />
+          </Key>
+          <Property Name="vacancies_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="position_id" Type="int" />
+          <Property Name="departament_id" Type="int" />
+          <Property Name="vacancies_amount" Type="int" />
+          <Property Name="vacancies_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="date_start_vacancies" Type="date" />
+          <Property Name="date_end_vacancies" Type="date" />
+        </EntityType>
+        <EntityType Name="Vacations">
+          <Key>
+            <PropertyRef Name="vacation_id" />
+          </Key>
+          <Property Name="vacation_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employee_id" Type="int" />
+          <Property Name="date_start_vacation" Type="date" />
+          <Property Name="quantity_day" Type="int" />
+        </EntityType>
+        <Association Name="FK_Info_employees_Departaments1">
+          <End Role="Departaments" Type="Self.Departaments" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Info_employees" Type="Self.Info_employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departaments">
+              <PropertyRef Name="departament_id" />
+            </Principal>
+            <Dependent Role="Info_employees">
+              <PropertyRef Name="departament_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_employees_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Info_employees" Type="Self.Info_employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="Info_employees">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_employees_Positions">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Info_employees" Type="Self.Info_employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="position_id" />
+            </Principal>
+            <Dependent Role="Info_employees">
+              <PropertyRef Name="position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_time_Departaments">
+          <End Role="Departaments" Type="Self.Departaments" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="State_time" Type="Self.State_time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departaments">
+              <PropertyRef Name="departament_id" />
+            </Principal>
+            <Dependent Role="State_time">
+              <PropertyRef Name="departament_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_time_Positions">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="State_time" Type="Self.State_time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="position_id" />
+            </Principal>
+            <Dependent Role="State_time">
+              <PropertyRef Name="position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacancies_Departaments">
+          <End Role="Departaments" Type="Self.Departaments" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacancies" Type="Self.Vacancies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departaments">
+              <PropertyRef Name="departament_id" />
+            </Principal>
+            <Dependent Role="Vacancies">
+              <PropertyRef Name="departament_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacancies_Positions">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacancies" Type="Self.Vacancies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="position_id" />
+            </Principal>
+            <Dependent Role="Vacancies">
+              <PropertyRef Name="position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacations_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacations" Type="Self.Vacations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="Vacations">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище personal_accounting_DBModelContainer">
+          <EntitySet Name="Departaments" EntityType="Self.Departaments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Documents" EntityType="Self.Documents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Info_employees" EntityType="Self.Info_employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State_time" EntityType="Self.State_time" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vacancies" EntityType="Self.Vacancies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vacations" EntityType="Self.Vacations" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Info_employees_Departaments1" Association="Self.FK_Info_employees_Departaments1">
+            <End Role="Departaments" EntitySet="Departaments" />
+            <End Role="Info_employees" EntitySet="Info_employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_employees_Employees" Association="Self.FK_Info_employees_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Info_employees" EntitySet="Info_employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_employees_Positions" Association="Self.FK_Info_employees_Positions">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Info_employees" EntitySet="Info_employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_time_Departaments" Association="Self.FK_State_time_Departaments">
+            <End Role="Departaments" EntitySet="Departaments" />
+            <End Role="State_time" EntitySet="State_time" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_time_Positions" Association="Self.FK_State_time_Positions">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="State_time" EntitySet="State_time" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacancies_Departaments" Association="Self.FK_Vacancies_Departaments">
+            <End Role="Departaments" EntitySet="Departaments" />
+            <End Role="Vacancies" EntitySet="Vacancies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacancies_Positions" Association="Self.FK_Vacancies_Positions">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Vacancies" EntitySet="Vacancies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacations_Employees" Association="Self.FK_Vacations_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Vacations" EntitySet="Vacations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="personal_accounting_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Departaments">
+          <Key>
+            <PropertyRef Name="departament_id" />
+          </Key>
+          <Property Name="departament_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="departament_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Info_employees" Relationship="Self.FK_Info_employees_Departaments1" FromRole="Departaments" ToRole="Info_employees" />
+          <NavigationProperty Name="State_time" Relationship="Self.FK_State_time_Departaments" FromRole="Departaments" ToRole="State_time" />
+          <NavigationProperty Name="Vacancies" Relationship="Self.FK_Vacancies_Departaments" FromRole="Departaments" ToRole="Vacancies" />
+        </EntityType>
+        <EntityType Name="Documents">
+          <Key>
+            <PropertyRef Name="id_doc" />
+          </Key>
+          <Property Name="id_doc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_doc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="rights" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date_of_birth" Type="DateTime" Precision="0" />
+          <Property Name="address_city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="home_address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="marital_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="amount_children" Type="Int32" />
+          <Property Name="data_passport" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="number_of_telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date_reg_passport" Type="DateTime" Precision="0" />
+          <Property Name="organisation_passport" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Info_employees" Relationship="Self.FK_Info_employees_Employees" FromRole="Employees" ToRole="Info_employees" />
+          <NavigationProperty Name="Vacations" Relationship="Self.FK_Vacations_Employees" FromRole="Employees" ToRole="Vacations" />
+        </EntityType>
+        <EntityType Name="Info_employees">
+          <Key>
+            <PropertyRef Name="id_info_employee" />
+          </Key>
+          <Property Name="id_info_employee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="position_id" Type="Int32" />
+          <Property Name="departament_id" Type="Int32" />
+          <Property Name="employee_id" Type="Int32" Nullable="false" />
+          <Property Name="reception_date" Type="DateTime" Precision="0" />
+          <Property Name="dismissal_date" Type="DateTime" Precision="0" />
+          <Property Name="start_activity" Type="DateTime" Precision="0" />
+          <Property Name="disability" Type="Boolean" />
+          <Property Name="disability_date" Type="DateTime" Precision="0" />
+          <Property Name="rate_work" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="salary" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Departaments" Relationship="Self.FK_Info_employees_Departaments1" FromRole="Info_employees" ToRole="Departaments" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Info_employees_Employees" FromRole="Info_employees" ToRole="Employees" />
+          <NavigationProperty Name="Positions" Relationship="Self.FK_Info_employees_Positions" FromRole="Info_employees" ToRole="Positions" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="position_id" />
+          </Key>
+          <Property Name="position_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="positions_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Info_employees" Relationship="Self.FK_Info_employees_Positions" FromRole="Positions" ToRole="Info_employees" />
+          <NavigationProperty Name="State_time" Relationship="Self.FK_State_time_Positions" FromRole="Positions" ToRole="State_time" />
+          <NavigationProperty Name="Vacancies" Relationship="Self.FK_Vacancies_Positions" FromRole="Positions" ToRole="Vacancies" />
+        </EntityType>
+        <EntityType Name="State_time">
+          <Key>
+            <PropertyRef Name="state_unit_id" />
+          </Key>
+          <Property Name="state_unit_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="position_id" Type="Int32" />
+          <Property Name="departament_id" Type="Int32" />
+          <Property Name="quantity_state_unit" Type="Int32" />
+          <NavigationProperty Name="Departaments" Relationship="Self.FK_State_time_Departaments" FromRole="State_time" ToRole="Departaments" />
+          <NavigationProperty Name="Positions" Relationship="Self.FK_State_time_Positions" FromRole="State_time" ToRole="Positions" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Vacancies">
+          <Key>
+            <PropertyRef Name="vacancies_id" />
+          </Key>
+          <Property Name="vacancies_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="position_id" Type="Int32" />
+          <Property Name="departament_id" Type="Int32" />
+          <Property Name="vacancies_amount" Type="Int32" />
+          <Property Name="vacancies_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date_start_vacancies" Type="DateTime" Precision="0" />
+          <Property Name="date_end_vacancies" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Departaments" Relationship="Self.FK_Vacancies_Departaments" FromRole="Vacancies" ToRole="Departaments" />
+          <NavigationProperty Name="Positions" Relationship="Self.FK_Vacancies_Positions" FromRole="Vacancies" ToRole="Positions" />
+        </EntityType>
+        <EntityType Name="Vacations">
+          <Key>
+            <PropertyRef Name="vacation_id" />
+          </Key>
+          <Property Name="vacation_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employee_id" Type="Int32" />
+          <Property Name="date_start_vacation" Type="DateTime" Precision="0" />
+          <Property Name="quantity_day" Type="Int32" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Vacations_Employees" FromRole="Vacations" ToRole="Employees" />
+        </EntityType>
+        <Association Name="FK_Info_employees_Departaments1">
+          <End Role="Departaments" Type="Self.Departaments" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Info_employees" Type="Self.Info_employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departaments">
+              <PropertyRef Name="departament_id" />
+            </Principal>
+            <Dependent Role="Info_employees">
+              <PropertyRef Name="departament_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_time_Departaments">
+          <End Role="Departaments" Type="Self.Departaments" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="State_time" Type="Self.State_time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departaments">
+              <PropertyRef Name="departament_id" />
+            </Principal>
+            <Dependent Role="State_time">
+              <PropertyRef Name="departament_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacancies_Departaments">
+          <End Role="Departaments" Type="Self.Departaments" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacancies" Type="Self.Vacancies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departaments">
+              <PropertyRef Name="departament_id" />
+            </Principal>
+            <Dependent Role="Vacancies">
+              <PropertyRef Name="departament_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_employees_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Info_employees" Type="Self.Info_employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="Info_employees">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacations_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacations" Type="Self.Vacations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="Vacations">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_employees_Positions">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Info_employees" Type="Self.Info_employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="position_id" />
+            </Principal>
+            <Dependent Role="Info_employees">
+              <PropertyRef Name="position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_time_Positions">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="State_time" Type="Self.State_time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="position_id" />
+            </Principal>
+            <Dependent Role="State_time">
+              <PropertyRef Name="position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacancies_Positions">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacancies" Type="Self.Vacancies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="position_id" />
+            </Principal>
+            <Dependent Role="Vacancies">
+              <PropertyRef Name="position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="personal_accounting_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Departaments" EntityType="Self.Departaments" />
+          <EntitySet Name="Documents" EntityType="Self.Documents" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="Info_employees" EntityType="Self.Info_employees" />
+          <EntitySet Name="Positions" EntityType="Self.Positions" />
+          <EntitySet Name="State_time" EntityType="Self.State_time" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Vacancies" EntityType="Self.Vacancies" />
+          <EntitySet Name="Vacations" EntityType="Self.Vacations" />
+          <AssociationSet Name="FK_Info_employees_Departaments1" Association="Self.FK_Info_employees_Departaments1">
+            <End Role="Departaments" EntitySet="Departaments" />
+            <End Role="Info_employees" EntitySet="Info_employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_time_Departaments" Association="Self.FK_State_time_Departaments">
+            <End Role="Departaments" EntitySet="Departaments" />
+            <End Role="State_time" EntitySet="State_time" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacancies_Departaments" Association="Self.FK_Vacancies_Departaments">
+            <End Role="Departaments" EntitySet="Departaments" />
+            <End Role="Vacancies" EntitySet="Vacancies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_employees_Employees" Association="Self.FK_Info_employees_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Info_employees" EntitySet="Info_employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacations_Employees" Association="Self.FK_Vacations_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Vacations" EntitySet="Vacations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_employees_Positions" Association="Self.FK_Info_employees_Positions">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Info_employees" EntitySet="Info_employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_time_Positions" Association="Self.FK_State_time_Positions">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="State_time" EntitySet="State_time" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacancies_Positions" Association="Self.FK_Vacancies_Positions">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Vacancies" EntitySet="Vacancies" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище personal_accounting_DBModelContainer" CdmEntityContainer="personal_accounting_DBEntities">
+          <EntitySetMapping Name="Departaments">
+            <EntityTypeMapping TypeName="personal_accounting_DBModel.Departaments">
+              <MappingFragment StoreEntitySet="Departaments">
+                <ScalarProperty Name="departament_id" ColumnName="departament_id" />
+                <ScalarProperty Name="departament_name" ColumnName="departament_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="personal_accounting_DBModel.Documents">
+              <MappingFragment StoreEntitySet="Documents">
+                <ScalarProperty Name="id_doc" ColumnName="id_doc" />
+                <ScalarProperty Name="name_doc" ColumnName="name_doc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="personal_accounting_DBModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="rights" ColumnName="rights" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="address_city" ColumnName="address_city" />
+                <ScalarProperty Name="home_address" ColumnName="home_address" />
+                <ScalarProperty Name="marital_status" ColumnName="marital_status" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="amount_children" ColumnName="amount_children" />
+                <ScalarProperty Name="data_passport" ColumnName="data_passport" />
+                <ScalarProperty Name="number_of_telephone" ColumnName="number_of_telephone" />
+                <ScalarProperty Name="date_reg_passport" ColumnName="date_reg_passport" />
+                <ScalarProperty Name="organisation_passport" ColumnName="organisation_passport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Info_employees">
+            <EntityTypeMapping TypeName="personal_accounting_DBModel.Info_employees">
+              <MappingFragment StoreEntitySet="Info_employees">
+                <ScalarProperty Name="id_info_employee" ColumnName="id_info_employee" />
+                <ScalarProperty Name="position_id" ColumnName="position_id" />
+                <ScalarProperty Name="departament_id" ColumnName="departament_id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="reception_date" ColumnName="reception_date" />
+                <ScalarProperty Name="dismissal_date" ColumnName="dismissal_date" />
+                <ScalarProperty Name="start_activity" ColumnName="start_activity" />
+                <ScalarProperty Name="disability" ColumnName="disability" />
+                <ScalarProperty Name="disability_date" ColumnName="disability_date" />
+                <ScalarProperty Name="rate_work" ColumnName="rate_work" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="personal_accounting_DBModel.Positions">
+              <MappingFragment StoreEntitySet="Positions">
+                <ScalarProperty Name="position_id" ColumnName="position_id" />
+                <ScalarProperty Name="positions_name" ColumnName="positions_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="State_time">
+            <EntityTypeMapping TypeName="personal_accounting_DBModel.State_time">
+              <MappingFragment StoreEntitySet="State_time">
+                <ScalarProperty Name="state_unit_id" ColumnName="state_unit_id" />
+                <ScalarProperty Name="position_id" ColumnName="position_id" />
+                <ScalarProperty Name="departament_id" ColumnName="departament_id" />
+                <ScalarProperty Name="quantity_state_unit" ColumnName="quantity_state_unit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="personal_accounting_DBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vacancies">
+            <EntityTypeMapping TypeName="personal_accounting_DBModel.Vacancies">
+              <MappingFragment StoreEntitySet="Vacancies">
+                <ScalarProperty Name="vacancies_id" ColumnName="vacancies_id" />
+                <ScalarProperty Name="position_id" ColumnName="position_id" />
+                <ScalarProperty Name="departament_id" ColumnName="departament_id" />
+                <ScalarProperty Name="vacancies_amount" ColumnName="vacancies_amount" />
+                <ScalarProperty Name="vacancies_type" ColumnName="vacancies_type" />
+                <ScalarProperty Name="date_start_vacancies" ColumnName="date_start_vacancies" />
+                <ScalarProperty Name="date_end_vacancies" ColumnName="date_end_vacancies" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vacations">
+            <EntityTypeMapping TypeName="personal_accounting_DBModel.Vacations">
+              <MappingFragment StoreEntitySet="Vacations">
+                <ScalarProperty Name="vacation_id" ColumnName="vacation_id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="date_start_vacation" ColumnName="date_start_vacation" />
+                <ScalarProperty Name="quantity_day" ColumnName="quantity_day" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,31 @@
+﻿<Page x:Class="personal_accounting.RegistrationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:personal_accounting"
+      mc:Ignorable="d" 
+       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      d:DesignHeight="600" d:DesignWidth="1000"
+      Title="RegistrationPage">
+
+    <Grid Background="#f0d9ff">
+        <Border MinWidth="400" Margin="15" Background="White" VerticalAlignment="Center" Padding="30" MaxWidth="550" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock x:Name="LoginPageButton" Text="Добро пожаловать" FontSize="30" FontWeight="Bold" Margin="0 0 0 20"/>
+                <Grid Margin="0 0 0 20">
+
+                    <Button x:Name="ButtonLoginPage" HorizontalAlignment="Right" Content="Уже зарегистрированы" Style="{StaticResource MaterialDesignFlatButton}" Click="ButtonLoginPage_Click"/>
+                </Grid>
+                <TextBox x:Name="LoginBox" materialDesign:HintAssist.Hint="Введите логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="1,0,-1,0"/>
+                <TextBox x:Name="EmailBox" materialDesign:HintAssist.Hint="Введите Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <PasswordBox x:Name="PassBox" materialDesign:HintAssist.Hint="Введите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <PasswordBox x:Name="PassBoxRep" materialDesign:HintAssist.Hint="Повторите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <Button x:Name="ButtonReg" Content="Зарегистрироваться" Margin="0 20" Click="ButtonReg_Click" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

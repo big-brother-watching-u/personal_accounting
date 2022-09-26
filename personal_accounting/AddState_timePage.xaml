@@ -1,0 +1,35 @@
+﻿<Page x:Class="personal_accounting.AddState_timePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:personal_accounting"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1570"
+      Title="AddState_timePage" Background="White">
+
+    <Grid x:Name="AddInfo_employee">
+        <Frame x:Name="Info_employeeFrame" Background="#4657ff" NavigationUIVisibility="Hidden" Grid.Row="15" Grid.ColumnSpan="2"/>
+        <TextBlock Text="Позиция" FontSize="40" Grid.Row="0" Background="#faf2fd"/>
+        <TextBlock Text="Департамент" FontSize="40" Grid.Row="1" Background="White"/>
+        <TextBlock Text="Количество шт. ед." FontSize="40" Grid.Row="2" Background="#faf2fd"/>
+
+        <ComboBox x:Name="position_idBox" Grid.Row="0" Grid.Column="1" FontSize="40" Background="#faf2fd" DisplayMemberPath="positions_name"  SelectedItem="{Binding Positions}" Height="104"/>
+        <ComboBox x:Name="departament_idBox" Grid.Row="1" Grid.Column="1" FontSize="40" Background="White" DisplayMemberPath="departament_name" SelectedItem="{Binding Departaments}" Height="104"/>
+        <TextBox x:Name="quantity_state_unitBox" Grid.Row="2" Grid.Column="1" FontSize="40" Background="#faf2fd" Text="{Binding quantity_state_unit}" Height="104"/>
+        <Button Content="Назад" Grid.Column="0" Grid.Row="14" Height="50" Name="ButtonBack" Width="300" Click="ButtonBack_Click"/>
+        <Button Content="Сохранить" Grid.Column="1" Grid.Row="14" Height="50" Name="ButtonSave" Width="300" Margin="700,0,0,0" Click="ButtonSave_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="247*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="104"/>
+            <RowDefinition Height="104"/>
+            <RowDefinition Height="104"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="145"/>
+        </Grid.RowDefinitions>
+    </Grid>
+</Page>

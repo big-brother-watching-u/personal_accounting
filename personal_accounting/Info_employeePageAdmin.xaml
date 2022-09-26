@@ -1,0 +1,68 @@
+﻿<Page x:Class="personal_accounting.Info_employeePageAdmin"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:personal_accounting"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1570"
+      Title="Info_employeePageAdmin" IsVisibleChanged="Page_is_visibled">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="187*"/>
+            <RowDefinition Height="29*"/>
+        </Grid.RowDefinitions>
+        <Frame x:Name="Info_employeeFrame" Background="#4657ff" NavigationUIVisibility="Hidden" Grid.RowSpan="2"/>
+        <DataGrid x:Name="DGridInfo_employee" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Employees.surname}" Width="200"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Employees.name}" Width="200"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Employees.patronymic}" Width="200"/>
+                <DataGridTextColumn Header="Позиция" Binding="{Binding Positions.positions_name}" Width="200"/>
+                <DataGridTextColumn Header="Отдел/Кафедра" Binding="{Binding Departaments.departament_name}" Width="200"/>
+                <DataGridTextColumn Header="Дата приема" Binding="{Binding reception_date, StringFormat=\{0:dd.MM.yyyy\}}" Width="150"/>
+                <DataGridTextColumn Header="Дата увольнения" Binding="{Binding dismissal_date, StringFormat=\{0:dd.MM.yyyy\}}" Width="200"/>
+                <DataGridTextColumn Header="Начало труд. деятельности" Binding="{Binding start_activity, StringFormat=\{0:dd.MM.yyyy\}}" Width="200"/>
+                <DataGridTemplateColumn Header="Нетрудоспособность" CanUserResize="False" Width="200">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Text" Value="Нет" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding disability}" Value="True">
+                                                <Setter Property="Text" Value="Да" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Дата нетрудоспособности" Binding="{Binding disability_date, StringFormat=\{0:dd.MM.yyyy\}}" Width="200"/>
+                <DataGridTextColumn Header="Ставка" Binding="{Binding rate_work}" Width="150"/>
+                <DataGridTextColumn Header="Оклад" Binding="{Binding salary}" Width="200"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Редактировать" Name="BtnEdit" Click="BtnEdit_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Приказ о приеме на работу" Name="BtnRecept" Click="BtnRecept_Click" Background="#4657ff"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Дабавить" Grid.Row="1" HorizontalAlignment="Left" Width="400" Height="50" x:Name="AddButton" Click="AddButton_Click"/>
+        <Button Content="Удалить" Grid.Row="1" HorizontalAlignment="Right" Width="400" Height="50" x:Name="DeleteButton" Click="DeleteButton_Click"/>
+    </Grid>
+</Page>
