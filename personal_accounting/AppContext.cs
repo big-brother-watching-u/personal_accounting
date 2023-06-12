@@ -10,6 +10,6 @@ namespace personal_accounting
     class AppContext : DbContext
     {
         public DbSet<Employee> Employees { get; set; }
-        public AppContext() : base("personal_accounting.Properties.Settings.personal_accounting_DBConnectionString") { }
+        public AppContext() : base("personal_accounting.Properties.Settings.personal_accounting_DBConnectionStrings") { }
     }
 }

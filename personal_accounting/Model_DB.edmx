@@ -49,14 +49,14 @@
           <Property Name="id_info_employee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="position_id" Type="int" />
           <Property Name="departament_id" Type="int" />
-          <Property Name="employee_id" Type="int" Nullable="false" />
+          <Property Name="employee_id" Type="int" />
           <Property Name="reception_date" Type="date" />
           <Property Name="dismissal_date" Type="date" />
           <Property Name="start_activity" Type="date" />
           <Property Name="disability" Type="bit" />
           <Property Name="disability_date" Type="date" />
           <Property Name="rate_work" Type="nvarchar" MaxLength="50" />
-          <Property Name="salary" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="salary" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Positions">
           <Key>
@@ -105,7 +105,7 @@
           <Property Name="date_start_vacation" Type="date" />
           <Property Name="quantity_day" Type="int" />
         </EntityType>
-        <Association Name="FK_Info_employees_Departaments1">
+        <Association Name="FK_Info_employees_Departaments">
           <End Role="Departaments" Type="Self.Departaments" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -120,7 +120,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Info_employees_Employees">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="1">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Info_employees" Type="Self.Info_employees" Multiplicity="*" />
@@ -148,9 +148,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_State_time_Departaments">
-          <End Role="Departaments" Type="Self.Departaments" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Departaments" Type="Self.Departaments" Multiplicity="0..1" />
           <End Role="State_time" Type="Self.State_time" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Departaments">
@@ -162,9 +160,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_State_time_Positions">
-          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
           <End Role="State_time" Type="Self.State_time" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Positions">
@@ -227,7 +223,7 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vacancies" EntityType="Self.Vacancies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vacations" EntityType="Self.Vacations" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Info_employees_Departaments1" Association="Self.FK_Info_employees_Departaments1">
+          <AssociationSet Name="FK_Info_employees_Departaments" Association="Self.FK_Info_employees_Departaments">
             <End Role="Departaments" EntitySet="Departaments" />
             <End Role="Info_employees" EntitySet="Info_employees" />
           </AssociationSet>
@@ -271,7 +267,7 @@
           </Key>
           <Property Name="departament_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="departament_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Info_employees" Relationship="Self.FK_Info_employees_Departaments1" FromRole="Departaments" ToRole="Info_employees" />
+          <NavigationProperty Name="Info_employees" Relationship="Self.FK_Info_employees_Departaments" FromRole="Departaments" ToRole="Info_employees" />
           <NavigationProperty Name="State_time" Relationship="Self.FK_State_time_Departaments" FromRole="Departaments" ToRole="State_time" />
           <NavigationProperty Name="Vacancies" Relationship="Self.FK_Vacancies_Departaments" FromRole="Departaments" ToRole="Vacancies" />
         </EntityType>
@@ -314,15 +310,15 @@
           <Property Name="id_info_employee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="position_id" Type="Int32" />
           <Property Name="departament_id" Type="Int32" />
-          <Property Name="employee_id" Type="Int32" Nullable="false" />
+          <Property Name="employee_id" Type="Int32" />
           <Property Name="reception_date" Type="DateTime" Precision="0" />
           <Property Name="dismissal_date" Type="DateTime" Precision="0" />
           <Property Name="start_activity" Type="DateTime" Precision="0" />
           <Property Name="disability" Type="Boolean" />
           <Property Name="disability_date" Type="DateTime" Precision="0" />
           <Property Name="rate_work" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="salary" Type="Decimal" Precision="18" Scale="2" />
-          <NavigationProperty Name="Departaments" Relationship="Self.FK_Info_employees_Departaments1" FromRole="Info_employees" ToRole="Departaments" />
+          <Property Name="salary" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Departaments" Relationship="Self.FK_Info_employees_Departaments" FromRole="Info_employees" ToRole="Departaments" />
           <NavigationProperty Name="Employees" Relationship="Self.FK_Info_employees_Employees" FromRole="Info_employees" ToRole="Employees" />
           <NavigationProperty Name="Positions" Relationship="Self.FK_Info_employees_Positions" FromRole="Info_employees" ToRole="Positions" />
         </EntityType>
@@ -381,7 +377,7 @@
           <Property Name="quantity_day" Type="Int32" />
           <NavigationProperty Name="Employees" Relationship="Self.FK_Vacations_Employees" FromRole="Vacations" ToRole="Employees" />
         </EntityType>
-        <Association Name="FK_Info_employees_Departaments1">
+        <Association Name="FK_Info_employees_Departaments">
           <End Role="Departaments" Type="Self.Departaments" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -396,9 +392,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_State_time_Departaments">
-          <End Role="Departaments" Type="Self.Departaments" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Departaments" Type="Self.Departaments" Multiplicity="0..1" />
           <End Role="State_time" Type="Self.State_time" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Departaments">
@@ -424,7 +418,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Info_employees_Employees">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="1">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Info_employees" Type="Self.Info_employees" Multiplicity="*" />
@@ -466,9 +460,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_State_time_Positions">
-          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
           <End Role="State_time" Type="Self.State_time" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Positions">
@@ -503,7 +495,7 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Vacancies" EntityType="Self.Vacancies" />
           <EntitySet Name="Vacations" EntityType="Self.Vacations" />
-          <AssociationSet Name="FK_Info_employees_Departaments1" Association="Self.FK_Info_employees_Departaments1">
+          <AssociationSet Name="FK_Info_employees_Departaments" Association="Self.FK_Info_employees_Departaments">
             <End Role="Departaments" EntitySet="Departaments" />
             <End Role="Info_employees" EntitySet="Info_employees" />
           </AssociationSet>

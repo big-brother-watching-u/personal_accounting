@@ -17,7 +17,7 @@ namespace personal_accounting
         public int id_info_employee { get; set; }
         public Nullable<int> position_id { get; set; }
         public Nullable<int> departament_id { get; set; }
-        public int employee_id { get; set; }
+        public Nullable<int> employee_id { get; set; }
         public Nullable<System.DateTime> reception_date { get; set; }
         public Nullable<System.DateTime> dismissal_date { get; set; }
         public Nullable<System.DateTime> start_activity { get; set; }

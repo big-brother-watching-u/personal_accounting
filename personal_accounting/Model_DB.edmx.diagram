@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="db15931df7b54448941f82c54af0e65e" Name="Diagram1">
+      <Diagram DiagramId="d5da1f5d812c4f2eb9125207640ac5ec" Name="Diagram1">
         <EntityTypeShape EntityType="personal_accounting_DBModel.Departaments" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="personal_accounting_DBModel.Documents" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="personal_accounting_DBModel.Employees" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
@@ -14,7 +14,7 @@
         <EntityTypeShape EntityType="personal_accounting_DBModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="personal_accounting_DBModel.Vacancies" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="personal_accounting_DBModel.Vacations" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
-        <AssociationConnector Association="personal_accounting_DBModel.FK_Info_employees_Departaments1" ManuallyRouted="false" />
+        <AssociationConnector Association="personal_accounting_DBModel.FK_Info_employees_Departaments" ManuallyRouted="false" />
         <AssociationConnector Association="personal_accounting_DBModel.FK_State_time_Departaments" ManuallyRouted="false" />
         <AssociationConnector Association="personal_accounting_DBModel.FK_Vacancies_Departaments" ManuallyRouted="false" />
         <AssociationConnector Association="personal_accounting_DBModel.FK_Info_employees_Employees" ManuallyRouted="false" />

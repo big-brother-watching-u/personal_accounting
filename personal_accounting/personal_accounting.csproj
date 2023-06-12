@@ -171,7 +171,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>personal_accounting_DBDataSet.xsd</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="PositionPageAdmin.xaml.cs">
       <DependentUpon>PositionPageAdmin.xaml</DependentUpon>
@@ -428,17 +428,17 @@
     <None Include="packages.config" />
     <None Include="personal_accounting_DBDataSet.xsc">
       <DependentUpon>personal_accounting_DBDataSet.xsd</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="personal_accounting_DBDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>personal_accounting_DBDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="personal_accounting_DBDataSet.xss">
       <DependentUpon>personal_accounting_DBDataSet.xsd</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
